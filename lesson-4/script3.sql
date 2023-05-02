@@ -100,6 +100,7 @@ SET STATISTICS TIME OFF
 */
 
 CREATE INDEX Log_requestTime ON Log (requestTime);
+DROP INDEX Log_requestTime ON Log;
 
 /*
  SQL Server Execution Times:
