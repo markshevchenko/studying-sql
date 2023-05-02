@@ -4,13 +4,13 @@
 
 ```mermaid
 erDiagram
-    Users ||--0{ Messages
+    Users ||--o{ Messages : have
     Users {
         INT userId PK
         TEXT name
     }
 
-    Messages ||--0{ Attachments
+    Messages ||--o{ Attachments : contains
     Messages {
         INT messageId PK
         INT userId
