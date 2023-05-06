@@ -66,3 +66,20 @@ LEFT JOIN Orders ON Customers.customerId = Orders.customerId
 --WHERE Customers.customerId = 3
 GROUP BY Customers.customerId;
 
+SELECT * FROM Customers;
+
+BEGIN ISOLATION LEVEL READ COMMITTED;
+SELECT * FROM Customers;
+SELECT SUM(amount) FROM Orders WHERE customerId = 3;
+UPDATE Orders
+SET amount = 1000
+WHERE orderId = 9;
+SELECT SUM(amount) FROM Orders WHERE customerId = 3;
+
+UPDATE Customers
+SET bonus = 0.07 * (SELECT SUM(amount) FROM Orders WHERE customerId = 3)
+WHERE customerId = 3;
+
+-- 4500 * 0.03 = 135
+-- 7500 * 0.07 = 525
+-- 4500 * 0.07 = 315
